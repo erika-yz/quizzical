@@ -2,35 +2,55 @@ import React from "react";
 import "../style/questions.css";
 import { nanoid } from "nanoid";
 
-export default function Questions(props) {
-	const styles = {
-		backgroundColor: "#D6DBF5",
-	};
-	const trivia = props.trivia;
+import Option from '../components/Option'
 
+
+
+
+export default function Questions(props) {
+	const he = require('he')
+
+	function styles(selected){
+		return{
+			backgroundColor: selected ? "#D6DBF5" : "#FFFFFF",
+		}
+	}
+	const trivia = props.trivia;
+	
 	const triviaElements = trivia.map((element) => {
 		return (
 			<div key={element.id}>
-				<h2 className="question--title">{b64_to_utf8(element.question)}</h2>
-				<div className="question--answers">{options(element.answers)}</div>
+				<h2 className="question--title">{he.decode(element.question)}</h2>
+				{/* <Option 
+
+				/> */}
+				{/* <div className="question--answers">{options(element.answers, element.id)}</div> */}
 				<hr />
 			</div>
 		);
 	});
 
-	function options(optionArr) {
+	function options(optionArr, triviaId) {
 		return optionArr.map((opt) => {
 			return (
-				<div key={nanoid()} className="question--option" style={styles}>
-					{b64_to_utf8(opt)}
+				<div key={opt.id}
+					className="question--option" 
+					style={styles(opt.selected)} 
+					onClick={(event)=>props.selectAnswer(event, triviaId, opt.id)}
+					>
+						{opt.value}
 				</div>
 			);
 		});
 	}
 
-	function b64_to_utf8(str) {
-		return decodeURIComponent(escape(window.atob(str)));
-	}
 
-	return <div className="container">{triviaElements}</div>;
+	return (
+		<div className="question--trivia">
+			<div className="container">
+				{triviaElements}
+			</div>
+			<button className="question--chek-answers">Check Answers</button>
+		</div>
+	);
 }
