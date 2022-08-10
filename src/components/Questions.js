@@ -2,7 +2,7 @@ import React from "react";
 import "../style/questions.css";
 import { nanoid } from "nanoid";
 
-import Option from '../components/Option'
+import Option from './Option'
 
 
 
