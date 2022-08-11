@@ -25,6 +25,7 @@ function App() {
 		setNewGame(false)
 		setTotalScore(0)
 		setAnswersChecked(false)
+		startGame()
 	}
 
 	React.useEffect(() => {

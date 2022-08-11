@@ -1,6 +1,6 @@
 .container {
     margin: auto;
-    padding:14% 14% 2% 14%;
+    padding: 10px  100px 10px 10px;
 }
 
 .question--trivia{
@@ -51,6 +51,7 @@ hr {
     height: 35px;
     border: none;
     cursor: pointer;
+    margin-top: 20px;
 
     font-family: var(--font-inter);
     font-weight: 600; 
